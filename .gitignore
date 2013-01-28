@@ -11,3 +11,5 @@
 *.lai
 *.la
 *.a
+#Compiled binary
+build/player
