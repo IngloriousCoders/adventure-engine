@@ -11,5 +11,5 @@
 *.lai
 *.la
 *.a
-#Compiled binary
-build/player
+# Compiled binary
+./build/player

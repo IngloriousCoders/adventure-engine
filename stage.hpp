@@ -57,7 +57,7 @@ namespace Adventure
 				
 				SDL_Surface* mSurface;
 				
-				static const int mCameraAngle = 30;			// Camera-Angle falls die Berechnung mal implementiert ist
+				static const double mCameraAngle = 46.8;			// Camera-Angle falls die Berechnung mal implementiert ist
 				int mCameraPosition;
 				int mDepth;
 				int mMaxDepth;

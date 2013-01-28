@@ -97,7 +97,8 @@ namespace Adventure
 			
 			
 			int maxIndex = 20;
-					
+
+
 			for ( int i=0; i<maxIndex; i++ )
 			{
 				for ( std::vector<Layer*>::iterator it = this->mLayers.begin() ; it != this->mLayers.end(); ++it )
@@ -106,20 +107,29 @@ namespace Adventure
 					
 					if ( i == currentLayer->getZIndex() )
 					{
-						int neg_position_x = 0.8*currentLayer->getZIndex()*(512-this->mCameraPosition);
-							
+						double radiant = mCameraAngle*(2*M_PI/360);
+
+						double b = ( atan( radiant ) * (( ((double)mDepth) / 20.0) * ((double)i) ) );
+
+						double factor = (2*b / 1024.0);
+
+						int x = -1.0 * ( ((double)mCameraPosition) -  b ) * factor;
+
 						SDL_Rect calculated_position;
-						calculated_position.x = neg_position_x;
+
+						calculated_position.x = x;
 						calculated_position.y = 0;
 						
 						calculated_position.w = currentLayer->getSurface()->w;
 						calculated_position.h = currentLayer->getSurface()->h;
 						
 						SDL_BlitSurface(currentLayer->getSurface(),0,this->mSurface,&calculated_position);
-					
+						
+
 					}
 				}
 			}
+
 			SDL_UpdateRect(this->mSurface, 0, 0, 1024, 768);
 			SDL_Flip(this->mSurface);
 		}
