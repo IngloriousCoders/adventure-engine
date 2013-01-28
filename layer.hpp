@@ -22,7 +22,7 @@ namespace Adventure
 			
 			SDL_Surface* getSurface(); // Intern: gibt SDL_Surface zurück, die den gesamten Layer darstellt.
 			
-			void setZIndex(int zindex); /
+			void setZIndex(int zindex); 
 			int  getZIndex();
 			
 			Asset *mBackground; 
