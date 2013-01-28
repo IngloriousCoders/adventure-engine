@@ -1,0 +1,16 @@
+<adventure>
+<metainfo>
+<title>Testgame</title>
+<author>Luca Beurer-Kellner</author>
+</metainfo>
+
+<content-dirs>
+	<content-dir type="assets" path="assets/assets.xml"></content-dir>
+	<content-dir type="stages" path="stages/first_stage.xml"></content-dir>
+</content-dirs>
+
+<plot>
+	<start stage="start"></start>
+</plot>
+
+</adventure>

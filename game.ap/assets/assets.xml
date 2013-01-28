@@ -1,0 +1,9 @@
+<assets>
+
+	<asset type="image" path="assets/start_horizont.png" id="start_horizont"></asset>
+	<asset type="image" path="assets/start_mitte.png" id="start_mitte"></asset>
+	<asset type="image" path="assets/start_vordergrund.png" id="start_vordergrund"></asset>
+	
+	<asset type="animation" path="assets/windrad.png" tilesize_width="200" tilesize_height="400"></asset>
+	
+</assets>

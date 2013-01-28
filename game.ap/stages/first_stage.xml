@@ -1,0 +1,15 @@
+<stage id="start">
+
+<camera>
+	<angle>30</angle>
+</camera>
+
+<layers>
+	
+	<layer zindex="horizont" image="start_horizont"></layer>
+	<layer zindex="2" image="start_mitte"></layer>
+	<layer zindex="1" image="start_vordergrund"></layer>
+	
+</layers>
+
+</stage>
