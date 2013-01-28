@@ -160,7 +160,7 @@ int main (int argc, char** argv)
 	Layer* buehne = new Layer(image_buehne,1);
 	Layer* kiste = new Layer(image_kiste,1);
 	
-	
+	// Hinzufuegen der Layer. Momentan muss man diese noch in der Z-Index-Reihenfolge hinzufügen, da ich zu Faul war einen Sortieralgorithmus in die Stage zu implementieren
 	mainStage->addLayer(horizont);
 	mainStage->addLayer(kerze);
 	mainStage->addLayer(buehne);
