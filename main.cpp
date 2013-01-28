@@ -12,6 +12,8 @@
 
 #include "stage.hpp"
 
+//GIT-TEST by UberHax4r
+
 bool quit = false;
 
 Adventure::Stage* mainStage;
@@ -122,14 +124,12 @@ int main (int argc, char** argv)
 	
 	
 	window = 0;
-	
+
 	if ( SDL_Init ( SDL_INIT_EVERYTHING )  < 0 )
 	{
 		std::cout << "Fehler beim initialisieren der SDL-Bibliothek: " << SDL_GetError() << std::endl;
 		exit(1);
-	}	
-	
-	
+	}
 	
 	
 	window = SDL_SetVideoMode(1024, 768, 24, SDL_SWSURFACE);
@@ -172,13 +172,13 @@ int main (int argc, char** argv)
 		std::cout << "Fehler beim Öffnen des SDL-Fensters: " <<  SDL_GetError() << std::endl;
 		exit(1);
 	}
-		
+
 	if (mainStage->getSurface() == 0 )
 	{
-		std::cout << "Fehler beim Darstellen der Hauptbuehne" << std::endl;
+		std::cout << "Fehler beim Darstellen der Hauptbuehne " << SDL_GetError() << std::endl;
 		exit(1);
 	}
-		
+
 	while ( !quit )
 	{
 		pollEvents();
