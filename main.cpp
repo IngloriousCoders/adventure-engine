@@ -1,3 +1,8 @@
+/*Beginn des Abenteuers... Adventure... -.-
+ * TODO:
+ * -schön butterweiches hin- und herscrollen 
+ */
+
 #include <rapidxml.hpp>
 #include <SDL/SDL.h>
 
@@ -135,15 +140,21 @@ int main (int argc, char** argv)
 	//Setup Stage
 	using namespace Adventure;
 	
+	
+	// Erstellen einer Stage mit id="start" und Höhe und Breite
 	mainStage = new Adventure::Stage("start",1024,768);
 	
+	// Setzen der Kameraposition auf Anfang
 	mainStage->setCameraPosition(0);
 	
+	
+	// Initialisieren der Assets. Alle auf autoload=true;
 	Asset* image_horizont = new Asset("game.ap/assets/horizont.png",true);
 	Asset* image_kerze = new Asset("game.ap/assets/kerze.png",true);
 	Asset* image_kiste = new Asset("game.ap/assets/kiste.png",true);
 	Asset* image_buehne = new Asset("game.ap/assets/buehne.png",true);
 	
+	// Initialisieren der Layer	
 	Layer* horizont = new Layer(image_horizont,-1);
 	Layer* kerze = new Layer(image_kerze,8);
 	Layer* buehne = new Layer(image_buehne,1);

@@ -54,8 +54,7 @@ namespace Adventure
 			if (layer->getZIndex() == -1)
 			{
 				this->mBackgroundLayer = layer;
-				
-				this->mBackgroundSurfaceClean = *layer->getSurface();
+			
 			}
 		}
 		

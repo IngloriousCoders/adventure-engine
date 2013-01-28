@@ -1,3 +1,8 @@
+/*Eine Stage ist eine Spielszene, also ein Schauplatz im Spiel, mit mehreren Layern und Spielfiguren* 
+ * TODO:
+ * 
+ * 
+ * */
 #ifndef _ADVENTURE_STAGE_H_
 #define _ADVENTURE_STAGE_H_
 
@@ -19,27 +24,29 @@ namespace Adventure
 	class Stage
 	{
 			public:
-				Stage(char* id,int width,int height);
+				Stage(char* id,int width,int height); // Stageid um später per "Links" zwischen Schauplätzen wechseln zu können
+													  // width, height Breite und Höhe des Feldes
 				~Stage();
 								
-				SDL_Surface* getSurface();
+				SDL_Surface* getSurface();  		  // Intern, gibt SDL_Surface zurück, dass das Bild repräsentiert
 				
-				SDL_Rect* getSDLSize();
+				SDL_Rect* getSDLSize();				  // Relevant um das Stage-SDL_Surface auf das Window-SDL_Surface richtig zu blitten/zeichnen
 				
 				int getWidth();
 				int getHeight();
 				
-				void setCameraPosition(int cameraPosition);
-				int getCameraPosition();
+				void setCameraPosition(int cameraPosition);	// Setzt die Kameraposition auf der X-Achse, kommt Position eines Dollys gleich. In Pixeln
+				int getCameraPosition();				     
 				
-				int getMaxDepth();
+				int getMaxDepth();							// Da Z-Index nur eine relative Position angibt, ist der Z-Index am weitesten hinten im Bild
+															// die maxDepth. 
 				
 				void setDepth( double depth );
-				int getDepth( );
+				int getDepth( );							// Weis gerade nicht warum es Depth und maxDepth gibt
 				
-				void addLayer( Layer* layer );
+				void addLayer( Layer* layer );				// Fügt eine Ebene hinzu. 
 				
-				void redraw();
+				void redraw();								// Zeichnet die Stage neu. Hier findet die Verschiebungs-Magie statt... NICHT
 							
 			private:
 				char* id;
@@ -47,11 +54,10 @@ namespace Adventure
 				std::vector<Layer*> mLayers;
 				
 				Layer* mBackgroundLayer;
-				SDL_Surface mBackgroundSurfaceClean;
 				
 				SDL_Surface* mSurface;
 				
-				static const int mCameraAngle = 30;
+				static const int mCameraAngle = 30;			// Camera-Angle falls die Berechnung mal implementiert ist
 				int mCameraPosition;
 				int mDepth;
 				int mMaxDepth;
@@ -59,7 +65,7 @@ namespace Adventure
 				int mWidth;
 				int mHeight;
 				
-				SDL_PixelFormat _format;
+				SDL_PixelFormat _format;					// Pixel-Format. Wichtig, um alle Bilder mit den korrekten Farben darzustellen
 
 	};
 
