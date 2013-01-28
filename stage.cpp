@@ -23,6 +23,7 @@ namespace Adventure
 			mFill.x = 0;
 			mFill.y = 0;
 			
+			this->sorted = false;
 			
 		}			
 		
@@ -56,6 +57,7 @@ namespace Adventure
 				this->mBackgroundLayer = layer;
 			
 			}
+			this->sorted = false;
 		}
 		
 		void Stage::setCameraPosition( int _val)
@@ -80,8 +82,44 @@ namespace Adventure
 		{
 			return this->mDepth;
 		}
+		void Stage::sortLayers()
+		{
+			bool changed = true;
+
+			while ( changed )
+			{
+				changed = false;
+				for ( int i=0;i<this->mLayers.size();i++ )
+				{
+					Layer* firstLayer = this->mLayers.at(i);
+
+					if ( i+1 < this->mLayers.size() )
+					{
+						Layer* secondLayer = this->mLayers.at(i+1);
+
+						if (secondLayer->getZIndex() < firstLayer->getZIndex() )
+						{
+							std::vector<Layer*>::iterator start = this->mLayers.begin();
+
+							this->mLayers.erase(start+(i+1));
+							this->mLayers.insert(start+i,secondLayer);
+
+							changed = true;
+						}
+					}
+
+				}
+
+			}
+
+			this->sorted = true;
+		}
 		void Stage::redraw()
 		{
+			if ( !sorted )
+			{
+				sortLayers();			
+			}
 			SDL_Surface* window = SDL_GetVideoSurface();
 			
 			SDL_PixelFormat* _format = window->format;
@@ -95,39 +133,36 @@ namespace Adventure
 			
 			SDL_Flip(this->mSurface);
 			
-			
+			//int maxIndex = this->mLayers.back()->getZIndex();
 			int maxIndex = 20;
 
-
-			for ( int i=0; i<maxIndex; i++ )
-			{
-				for ( std::vector<Layer*>::iterator it = this->mLayers.begin() ; it != this->mLayers.end(); ++it )
+			for ( std::vector<Layer*>::iterator it = this->mLayers.begin() ; it != this->mLayers.end(); ++it )
 				{
 					Layer* currentLayer = (*it);
-					
-					if ( i == currentLayer->getZIndex() )
+
+					if ( currentLayer->getZIndex() > maxIndex )
 					{
-						double radiant = mCameraAngle*(2*M_PI/360);
-
-						double b = ( atan( radiant ) * (( ((double)mDepth) / 20.0) * ((double)i) ) );
-
-						double factor = (2*b / 1024.0);
-
-						int x = -1.0 * ( ((double)mCameraPosition) -  b ) * factor;
-
-						SDL_Rect calculated_position;
-
-						calculated_position.x = x;
-						calculated_position.y = 0;
-						
-						calculated_position.w = currentLayer->getSurface()->w;
-						calculated_position.h = currentLayer->getSurface()->h;
-						
-						SDL_BlitSurface(currentLayer->getSurface(),0,this->mSurface,&calculated_position);
-						
-
+						continue;					
 					}
-				}
+					
+					double radiant = mCameraAngle*(2*M_PI/360);
+
+					double b = ( atan( radiant ) * (( ((double)mDepth) / maxIndex) * ((double)currentLayer->getZIndex() ) ) );
+
+					double factor = (2*b / (double)this->mWidth);
+
+					int x = -1.0 * ( ((double)mCameraPosition) -  b ) * factor;
+
+					SDL_Rect calculated_position;
+
+					calculated_position.x = x;
+					calculated_position.y = 0;
+						
+					calculated_position.w = currentLayer->getSurface()->w;
+					calculated_position.h = currentLayer->getSurface()->h;
+						
+					SDL_BlitSurface(currentLayer->getSurface(),0,this->mSurface,&calculated_position);
+								
 			}
 
 			SDL_UpdateRect(this->mSurface, 0, 0, 1024, 768);

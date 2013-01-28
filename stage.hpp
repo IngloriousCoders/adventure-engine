@@ -47,11 +47,16 @@ namespace Adventure
 				void addLayer( Layer* layer );				// Fügt eine Ebene hinzu. 
 				
 				void redraw();								// Zeichnet die Stage neu. Hier findet die Verschiebungs-Magie statt... NICHT
+
+				
 							
 			private:
 				char* id;
 				
 				std::vector<Layer*> mLayers;
+
+				bool sorted;
+				void sortLayers(); 							// Sortiert die Layers mit Bubblesort
 				
 				Layer* mBackgroundLayer;
 				
