@@ -46,7 +46,7 @@ namespace Adventure
 				
 				void addLayer( Layer* layer );				// Fügt eine Ebene hinzu. 
 				
-				void redraw();								// Zeichnet die Stage neu. Hier findet die Verschiebungs-Magie statt... NICHT
+				void redraw();								// Zeichnet die Stage neu. Hier findet die Verschiebungs-Magie statt
 
 				
 							
@@ -62,7 +62,7 @@ namespace Adventure
 				
 				SDL_Surface* mSurface;
 				
-				static const double mCameraAngle = 46.8;			// Camera-Angle falls die Berechnung mal implementiert ist
+				static const double mCameraAngle = 46.8;			// Camera-Angle
 				int mCameraPosition;
 				int mDepth;
 				int mMaxDepth;

@@ -25,6 +25,8 @@ bool left_pressed = false;
 bool right_pressed = false;
 
 
+static int last_ticks = 0;
+
 void drawStage()
 {
 	if (left_pressed)
@@ -132,7 +134,7 @@ int main (int argc, char** argv)
 	}
 	
 	
-	window = SDL_SetVideoMode(1024, 768, 24, SDL_SWSURFACE);
+	window = SDL_SetVideoMode(1024, 768, 24, SDL_HWSURFACE);
 	
 	SDL_EnableUNICODE( 1 );
 	
@@ -185,7 +187,13 @@ int main (int argc, char** argv)
 		drawStage();
 		
 		SDL_Flip(window);
-		SDL_Delay(1000/120);
+
+		int current_ticks = SDL_GetTicks();
+
+		std::cout << "fps=" << current_ticks-last_ticks << std::endl;
+		last_ticks = current_ticks;
+
+		//SDL_Delay(1000/120);
 	}
 	
 	

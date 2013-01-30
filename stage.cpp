@@ -126,7 +126,7 @@ namespace Adventure
 			
 			SDL_PixelFormat *format = this->mBackgroundLayer->getSurface()->format;
 			
-			this->mSurface = SDL_CreateRGBSurface(SDL_SWSURFACE,1024,768,24,0,0,0,0);
+			this->mSurface = SDL_CreateRGBSurface(SDL_HWSURFACE,1024,768,24,0,0,0,0);
 			
 			
 			SDL_BlitSurface(this->mBackgroundLayer->getSurface(),0,this->mSurface,0);
@@ -151,7 +151,7 @@ namespace Adventure
 
 					double factor = (2*b / (double)this->mWidth);
 
-					int x = -1.0 * ( ((double)mCameraPosition) -  b ) * factor;
+					double x = -1.0 * ( ((double)mCameraPosition) -  b ) * factor;
 
 					SDL_Rect calculated_position;
 

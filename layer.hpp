@@ -3,6 +3,7 @@
  * Jedes Objekt im Raum ist ein Layer/Ebene 
  * 
  * TODO:
+ * - Sowohl X als auch Y-Offset, also sozusagen Positionsangaben
  * 
  * */
 #ifndef _LAYER_H_
