@@ -16,6 +16,7 @@
 
 namespace Adventure
 {
+	//TEST
 	class Layer
 	{
 		public:
